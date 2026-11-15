@@ -83,7 +83,7 @@
           <p class="fine" id="rail-note" style="text-align:center"></p>
 
           <div class="trust">
-            <div><svg><use href="#i-lock"/></svg><span>Payment is handled by Gumroad. Your card details never touch this site.</span></div>
+            <div id="trust-pay"><svg><use href="#i-lock"/></svg><span>Payment is handled by Gumroad. Your card details never touch this site.</span></div>
             <div><svg><use href="#i-print"/></svg><span>Print version uses a light background so it does not drain your ink.</span></div>
             <div><svg><use href="#i-tab"/></svg><span>Works in GoodNotes, Notability, Noteshelf and most note apps.</span></div>
             <div><svg><use href="#i-check"/></svg><span>Broken file or not what this page described? Email within 14 days for a refund.</span></div>
@@ -113,8 +113,8 @@ var PRODUCTS = {
   'free-habit': {
     num: '(01)', title: 'minimalist habit tracker', price: '$0', priceLabel: 'free download',
     cta: 'download free', ctaIcon: 'i-dl',
-    url: 'https://gumroad.com/l/REPLACE-FREE-HABIT',
-    note: 'Gumroad will ask for an email so it can send the file. No card.',
+    url: 'files/Mirelle-Minimalist-Habit-Tracker.pdf', download: true,
+    note: 'Downloads straight away. No email, no account, no card.',
     sub: 'One month on a page. Ten habits, thirty one days, and a second page that splits the month into weeks. Undated, so write in whichever month you are starting.',
     chips: [['i-print','2 pages'],['i-tab','tablet or print'],['i-check','undated']],
     rail: [['PDF pages','2'],['Stickers','not in this one']],
@@ -125,7 +125,7 @@ var PRODUCTS = {
       ['Licence','Personal use. Print as many copies for yourself as you like.']
     ],
     steps: [
-      'Click download. Gumroad asks for your email and sends the file.',
+      'Click download. The PDF saves to your device right away.',
       'Print it, or open the PDF in GoodNotes or Notability.',
       'Write your habits down the left and the month at the top.',
       'Fill a circle each day you show up. Miss one, keep going.'
@@ -135,8 +135,8 @@ var PRODUCTS = {
   'bad-day': {
     num: '(02)', title: 'the bad day page', price: '$0', priceLabel: 'free download',
     cta: 'download free', ctaIcon: 'i-dl',
-    url: 'https://gumroad.com/l/REPLACE-BAD-DAY',
-    note: 'Gumroad will ask for an email so it can send the file. No card.',
+    url: 'files/Mirelle-Bad-Day-Page.pdf', download: true,
+    note: 'Downloads straight away. No email, no account, no card.',
     sub: 'For the day the whole system feels like too much. Three things, the two minute version of each habit, one thing to let go of, and a row that says start again here. Page two is the week that follows.',
     chips: [['i-print','2 pages'],['i-tab','tablet or print'],['i-check','undated']],
     rail: [['PDF pages','2'],['Stickers','not in this one']],
@@ -147,7 +147,7 @@ var PRODUCTS = {
       ['Licence','Personal use. Print it as often as you need to.']
     ],
     steps: [
-      'Click download. Gumroad asks for your email and sends the file.',
+      'Click download. The PDF saves to your device right away.',
       'Print it, or open the PDF in GoodNotes or Notability.',
       'Fill in three things. If three is too many, do the first one and stop.',
       'When you are ready, page two gives the week a plan.'
@@ -219,6 +219,7 @@ var PRODUCTS = {
   $('rail-price').textContent = p.price;
   $('rail-cta').href = p.url;
   $('rail-cta').rel = 'noopener';
+  if (p.download) $('rail-cta').setAttribute('download', '');
   $('rail-cta-text').textContent = p.cta;
   $('rail-cta').querySelector('use').setAttribute('href', '#' + p.ctaIcon);
   $('rail-note').textContent = p.note;
@@ -235,19 +236,19 @@ var PRODUCTS = {
 
   $('co-steps').innerHTML = p.steps.map(function (s) { return '<li><span>' + s + '</span></li>'; }).join('');
 
+  if (p.price === '$0') {
+    var tp = $('trust-pay');
+    if (tp) tp.innerHTML = '<svg><use href="#i-lock"/></svg><span>Free, and it stays free. No email wall, no account, nothing to cancel.</span>';
+  }
+
   $('co-gallery').innerHTML = p.gallery.map(function (g) {
     return '<img src="' + g[0] + '" alt="' + g[1] + '" loading="lazy">';
   }).join('');
 
-  if (p.url === '#') {
-    $('rail-cta').classList.remove('pri');
-    $('rail-cta').classList.add('gh');
-    $('rail-cta').setAttribute('aria-disabled', 'true');
-  }
   if (p.url === '#' || p.url.indexOf('REPLACE') > -1) {
     $('rail-cta').addEventListener('click', function (e) {
       e.preventDefault();
-      $('rail-note').textContent = p.url === '#' ? 'Not on sale yet. Leave your email on the home page and I will tell you when it lands.' : 'This button is not wired up yet. Put your Gumroad link in checkout.html and it will work.';
+      $('rail-note').textContent = 'The payment link is not connected yet. Put your Gumroad link in checkout.html and this button will work.';
     });
   }
 })();
