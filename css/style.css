@@ -44,7 +44,7 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 
 /* ---------- type ---------- */
 .disp{font-family:Gloock,Georgia,serif;font-weight:400;text-transform:lowercase;letter-spacing:-.025em;line-height:.92;text-wrap:balance}
-.h-xl{font-size:clamp(2.85rem,10.2vw,7.4rem)}
+.h-xl{font-size:clamp(2.75rem,8.4vw,7.4rem)}
 .h-lg{font-size:clamp(2.4rem,7vw,5.1rem)}
 .h-md{font-size:clamp(1.9rem,4.2vw,3.1rem)}
 .hand{font-family:Caveat,cursive;font-weight:600;line-height:1.15}
@@ -217,7 +217,7 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 .faq{max-width:50rem}
 .faq-wrap{display:grid;grid-template-columns:minmax(0,50rem) 1fr;gap:2rem;align-items:start}
 .faq-aside{position:relative;padding-top:1.5rem;display:grid;justify-items:center;gap:1rem;text-align:center}
-@media (max-width:1000px){.faq-wrap{grid-template-columns:1fr}.faq-aside{display:none}}
+@media (max-width:1150px){.faq-wrap{grid-template-columns:1fr}.faq-aside{display:none}}
 .faq details{border-top:2px solid var(--line);padding:.2rem 0}
 .faq details:last-of-type{border-bottom:2px solid var(--line)}
 .faq summary{display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;list-style:none;
@@ -282,7 +282,7 @@ form.sub input:focus{outline:3px solid var(--tomato);outline-offset:2px}
 .float:nth-of-type(4){animation-duration:6.1s;animation-delay:-3.4s}
 
 /* ---------- responsive ---------- */
-@media (max-width:1000px){
+@media (max-width:1150px){
   .hero-grid{grid-template-columns:1fr;gap:2.2rem}
   .hero-art{max-width:30rem;width:100%;margin-inline:auto;aspect-ratio:1/.9}
   .feat{grid-template-columns:1fr;gap:2.4rem}
